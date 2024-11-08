@@ -516,7 +516,7 @@ module vnet './core/network/vnet.bicep' = if (_networkIsolation) {
   name: 'virtual-network'
   scope: resourceGroup
   params: {
-    location: location
+    location: 'eastus' //location
     vnetName: _vnetName
     vnetReuse: _vnetReuse
     existingVnetResourceGroupName: _azureReuseConfig.existingVnetResourceGroupName
