@@ -739,7 +739,7 @@ module appServicePlan './core/host/appserviceplan.bicep' =  {
   scope: resourceGroup
   params: {
     name: _appServicePlanName
-    location: location
+    location: 'eastus'//location
     appServicePlanReuse : _azureReuseConfig.appServicePlanReuse
     existingAppServicePlanResourceGroupName : _azureReuseConfig.existingAppServicePlanResourceGroupName
     tags: tags
@@ -775,7 +775,7 @@ module orchestrator './core/host/functions.bicep' =  {
     storageAccountName: '${_storageAccountName}orc'
     appServicePlanId: appServicePlan.outputs.id
     appName: _orchestratorFunctionAppName
-    location: location
+    location: 'eastus'//location
     functionAppReuse: _azureReuseConfig.orchestratorFunctionAppReuse
     existingFunctionAppResourceGroupName: _azureReuseConfig.existingOrchestratorFunctionAppResourceGroupName
     functionAppStorageReuse: _azureReuseConfig.orchestratorFunctionAppStorageReuse
@@ -997,7 +997,7 @@ module frontEnd  'core/host/appservice.bicep' = {
     vnetName: _networkIsolation?vnet.outputs.name:''
     subnetId: _networkIsolation?vnet.outputs.appIntSubId:''
     appCommandLine: 'python ./app.py'
-    location: location
+    location: 'eastus'//location
     tags: union(tags, { 'azd-service-name': 'frontend' })
     appServicePlanId: appServicePlan.outputs.id
     runtimeName: 'python'
@@ -1120,7 +1120,7 @@ module dataIngestion './core/host/functions.bicep' = {
     subnetId: _networkIsolation?vnet.outputs.appIntSubId:''
     storageAccountName: '${_storageAccountName}ing'
     appName: _dataIngestionFunctionAppName
-    location: location
+    location: 'eastus' //location
     functionAppReuse: _azureReuseConfig.dataIngestionFunctionAppReuse
     existingFunctionAppResourceGroupName: _azureReuseConfig.existingDataIngestionFunctionAppResourceGroupName
     functionAppStorageReuse: _azureReuseConfig.dataIngestionFunctionAppStorageReuse
