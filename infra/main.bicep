@@ -780,19 +780,6 @@ module orchestrator './core/host/functions.bicep' =  {
     // identityId: identityId
     applicationInsightsName: appInsights.outputs.name
     appServicePlanId: appServicePlan.outputs.id
-    appName: _orchestratorFunctionAppName
-    location: 'eastus'//location
-    functionAppReuse: _azureReuseConfig.orchestratorFunctionAppReuse
-    existingFunctionAppResourceGroupName: _azureReuseConfig.existingOrchestratorFunctionAppResourceGroupName
-    functionAppStorageReuse: _azureReuseConfig.orchestratorFunctionAppStorageReuse
-    existingFunctionAppStorageName: _azureReuseConfig.existingOrchestratorFunctionAppStorageName
-    existingFunctionAppStorageResourceGroupName: _azureReuseConfig.existingOrchestratorFunctionAppStorageResourceGroupName
-    appInsightsConnectionString: appInsights.outputs.connectionString
-    appInsightsInstrumentationKey: appInsights.outputs.instrumentationKey
-    tags: union(tags, { 'azd-service-name': 'orchestrator' })
-    alwaysOn: true
-    functionAppScaleLimit: 2
-    numberOfWorkers: 2
     runtimeName: 'python'
     runtimeVersion: _funcAppRuntimeVersion
     storageAccountName: orchestratorStorage.outputs.name 
@@ -1180,21 +1167,6 @@ module dataIngestion './core/host/functions.bicep' = {
     networkIsolation: _networkIsolation
     vnetName: (_networkIsolation && !_vnetReuse)?vnet.outputs.name:''
     subnetId: (_networkIsolation && !_vnetReuse)?vnet.outputs.appIntSubId:'' 
-    keyVaultName: keyVault.outputs.name
-    appServicePlanId: appServicePlan.outputs.id
-    networkIsolation: _networkIsolation
-    vnetName: _networkIsolation?vnet.outputs.name:''
-    subnetId: _networkIsolation?vnet.outputs.appIntSubId:''
-    storageAccountName: '${_storageAccountName}ing'
-    appName: _dataIngestionFunctionAppName
-    location: 'eastus' //location
-    functionAppReuse: _azureReuseConfig.dataIngestionFunctionAppReuse
-    existingFunctionAppResourceGroupName: _azureReuseConfig.existingDataIngestionFunctionAppResourceGroupName
-    functionAppStorageReuse: _azureReuseConfig.dataIngestionFunctionAppStorageReuse
-    existingFunctionAppStorageName: _azureReuseConfig.existingDataIngestionFunctionAppStorageName
-    existingFunctionAppStorageResourceGroupName: _azureReuseConfig.existingDataIngestionFunctionAppStorageResourceGroupName
-    appInsightsConnectionString: appInsights.outputs.connectionString
-    appInsightsInstrumentationKey: appInsights.outputs.instrumentationKey
     tags: union(tags, { 'azd-service-name': 'dataIngest' })
     identityType: 'SystemAssigned'
     // identityId: identityId
