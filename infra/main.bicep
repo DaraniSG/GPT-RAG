@@ -518,7 +518,7 @@ module vnet './core/network/vnet.bicep' = if (_networkIsolation && !_vnetReuse) 
   name: 'virtual-network'
   scope: resourceGroup
   params: {
-    location: 'eastus' //location
+    location: location
     vnetName: _vnetName
     vnetReuse: _vnetReuse
     existingVnetResourceGroupName: _azureReuseConfig.existingVnetResourceGroupName
@@ -740,7 +740,7 @@ module appServicePlan './core/host/appserviceplan.bicep' =  {
   scope: resourceGroup
   params: {
     name: _appServicePlanName
-    location: 'eastus'//location
+    location: location
     appServicePlanReuse : _azureReuseConfig.appServicePlanReuse
     existingAppServicePlanResourceGroupName : _azureReuseConfig.existingAppServicePlanResourceGroupName
     tags: tags
@@ -1047,7 +1047,7 @@ module frontEnd  'core/host/appservice.bicep' = {
     vnetName: (_networkIsolation && !_vnetReuse)?vnet.outputs.name:''
     subnetId: (_networkIsolation && !_vnetReuse)?vnet.outputs.appIntSubId:''
     appCommandLine: 'python ./app.py'
-    location: 'eastus'//location
+    location: location
     tags: union(tags, { 'azd-service-name': 'frontend' })
     appServicePlanId: appServicePlan.outputs.id
     runtimeName: 'python'
