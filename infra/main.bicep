@@ -740,7 +740,7 @@ module appServicePlan './core/host/appserviceplan.bicep' =  {
   scope: resourceGroup
   params: {
     name: _appServicePlanName
-    location: location
+    location: 'eastus' //location
     appServicePlanReuse : _azureReuseConfig.appServicePlanReuse
     existingAppServicePlanResourceGroupName : _azureReuseConfig.existingAppServicePlanResourceGroupName
     tags: tags
@@ -770,7 +770,7 @@ module orchestrator './core/host/functions.bicep' =  {
   scope: resourceGroup
   params: {
     name: _orchestratorFunctionAppName
-    location: location
+    location: 'eastus' //location
     networkIsolation: _networkIsolation
     vnetName: (_networkIsolation && !_vnetReuse)?vnet.outputs.name:''
     subnetId: (_networkIsolation && !_vnetReuse)?vnet.outputs.appIntSubId:''
@@ -1047,7 +1047,7 @@ module frontEnd  'core/host/appservice.bicep' = {
     vnetName: (_networkIsolation && !_vnetReuse)?vnet.outputs.name:''
     subnetId: (_networkIsolation && !_vnetReuse)?vnet.outputs.appIntSubId:''
     appCommandLine: 'python ./app.py'
-    location: location
+    location: 'eastus'//location
     tags: union(tags, { 'azd-service-name': 'frontend' })
     appServicePlanId: appServicePlan.outputs.id
     runtimeName: 'python'
@@ -1163,7 +1163,7 @@ module dataIngestion './core/host/functions.bicep' = {
   scope: resourceGroup
   params: {
     name: _dataIngestionFunctionAppName
-    location: location
+    location: 'eastus' //location
     networkIsolation: _networkIsolation
     vnetName: (_networkIsolation && !_vnetReuse)?vnet.outputs.name:''
     subnetId: (_networkIsolation && !_vnetReuse)?vnet.outputs.appIntSubId:'' 
