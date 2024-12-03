@@ -770,7 +770,7 @@ module orchestrator './core/host/functions.bicep' =  {
   scope: resourceGroup
   params: {
     name: _orchestratorFunctionAppName
-    location: 'eastus' //location
+    location: location //'eastus' //
     networkIsolation: _networkIsolation
     vnetName: (_networkIsolation && !_vnetReuse)?vnet.outputs.name:''
     subnetId: (_networkIsolation && !_vnetReuse)?vnet.outputs.appIntSubId:''
@@ -1047,7 +1047,7 @@ module frontEnd  'core/host/appservice.bicep' = {
     vnetName: (_networkIsolation && !_vnetReuse)?vnet.outputs.name:''
     subnetId: (_networkIsolation && !_vnetReuse)?vnet.outputs.appIntSubId:''
     appCommandLine: 'python ./app.py'
-    location: 'eastus'//location
+    location: location // 'eastus' //
     tags: union(tags, { 'azd-service-name': 'frontend' })
     appServicePlanId: appServicePlan.outputs.id
     runtimeName: 'python'
@@ -1163,7 +1163,7 @@ module dataIngestion './core/host/functions.bicep' = {
   scope: resourceGroup
   params: {
     name: _dataIngestionFunctionAppName
-    location: 'eastus' //location
+    location: location // 'eastus' //
     networkIsolation: _networkIsolation
     vnetName: (_networkIsolation && !_vnetReuse)?vnet.outputs.name:''
     subnetId: (_networkIsolation && !_vnetReuse)?vnet.outputs.appIntSubId:'' 
