@@ -420,7 +420,7 @@ var _storageAccountName = _azureReuseConfig.storageReuse ? _azureReuseConfig.exi
 
 @description('Key Vault Name. Use your own name convention or leave as it is to generate a random name.')
 param keyVaultName string = ''
-var _keyVaultName = _azureReuseConfig.keyVaultReuse ? _azureReuseConfig.existingKeyVaultName : !empty(keyVaultName) ? keyVaultName : 'kv0-${resourceToken}'
+var _keyVaultName = _azureReuseConfig.keyVaultReuse ? _azureReuseConfig.existingKeyVaultName : !empty(keyVaultName) ? keyVaultName : 'kv0-${resourceToken}-1'
 
 @description('OpenAI Service Name. Use your own name convention or leave as it is to generate a random name.')
 param openAiServiceName string = ''
@@ -504,7 +504,7 @@ var _ztVmName = !empty(ztVmName) ? ztVmName : 'testvm-${resourceToken}'
 
 @description('The name of the Bastion Key Vault. If left empty, a random name will be generated.')
 param bastionKvName string = ''
-var _bastionKvName = !empty(bastionKvName) ? bastionKvName : 'bastionkv-${resourceToken}'
+var _bastionKvName = !empty(bastionKvName) ? bastionKvName : 'bastionkv-${resourceToken}-1'
 
 var _orchestratorEndpoint = 'https://${_orchestratorFunctionAppName}.azurewebsites.net/api/orc'
 
