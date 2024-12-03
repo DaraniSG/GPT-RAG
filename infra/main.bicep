@@ -504,7 +504,7 @@ var _ztVmName = !empty(ztVmName) ? ztVmName : 'testvm-${resourceToken}'
 
 @description('The name of the Bastion Key Vault. If left empty, a random name will be generated.')
 param bastionKvName string = ''
-var _bastionKvName = !empty(bastionKvName) ? bastionKvName : 'bastionkv-${resourceToken}-1'
+var _bastionKvName = !empty(bastionKvName) ? bastionKvName : 'bastionkv-${resourceToken}'
 
 var _orchestratorEndpoint = 'https://${_orchestratorFunctionAppName}.azurewebsites.net/api/orc'
 
