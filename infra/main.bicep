@@ -740,7 +740,7 @@ module appServicePlan './core/host/appserviceplan.bicep' =  {
   scope: resourceGroup
   params: {
     name: _appServicePlanName
-    location: 'eastus' //location
+    location: location //'eastus' //
     appServicePlanReuse : _azureReuseConfig.appServicePlanReuse
     existingAppServicePlanResourceGroupName : _azureReuseConfig.existingAppServicePlanResourceGroupName
     tags: tags
