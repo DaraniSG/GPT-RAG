@@ -613,7 +613,7 @@ module testvm './core/vm/dsvm.bicep' = if (_networkIsolation && !_vnetReuse && _
   name: 'testvm'
   scope: resourceGroup
   params: {
-    location: location
+    location: 'eastus' //location
     name: _ztVmName
     tags: tags
     subnetId:  _networkIsolation?vnet.outputs.aiSubId:''
