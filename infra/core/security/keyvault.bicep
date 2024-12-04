@@ -25,9 +25,9 @@ resource newKeyVault 'Microsoft.KeyVault/vaults@2022-07-01' = if (!keyVaultReuse
   properties: {
     tenantId: subscription().tenantId
     sku: { family: 'A', name: 'standard' }
-    enableSoftDelete: true
+    enableSoftDelete: false
     publicNetworkAccess: publicNetworkAccess
-    enablePurgeProtection: true    
+    enablePurgeProtection: false    
     accessPolicies: !empty(principalId) ? [
       {
         objectId: principalId
